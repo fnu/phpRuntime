@@ -3,7 +3,8 @@
 /**
  * @link https://github.com/nicolasff/phpredis
  */
-class Redis {
+class Redis
+{
 
     const REDIS_STRING    = 1;
     const REDIS_SET       = 2;
@@ -46,7 +47,7 @@ class Redis {
      * 取得键数据
      *
      * @param   string $key
-     * @return  string 如果 $key 不存在, 返回 (bool)false
+     * @return  string|boolen 如果 $key 不存在, 返回 (bool)false
      */
     public function get($key);
 
@@ -244,7 +245,18 @@ class Redis {
 
     public function lInsert();
 
-    public function sAdd();
+    /**
+     * @link https://github.com/nicolasff/phpredis#sadd Github
+     *
+     * @example $redis->sAdd($key, $value) 单个值
+     * @example $redis->sAdd($key, $value1, $value2...$valueN) 多个值
+     *
+     * @param string $key 集合的名称
+     * @param string|int $value 集合的值
+     *
+     * @return long The number of elements added to the set.
+     */
+    public function sAdd($key, $value);
 
     public function sSize();
 
@@ -425,7 +437,10 @@ class Redis {
 
     public function hVals();
 
-    public function hGetAll();
+    /**
+     * @return array|null
+     */
+    public function hGetAll($key);
 
     public function hExists();
 

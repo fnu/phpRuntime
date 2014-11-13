@@ -10,7 +10,8 @@ namespace Yaf;
  *
  * @link http://yaf.laruence.com/manual/yaf.classes.html#yaf.class.application
  */
-final class Application {
+final class Application
+{
 
     protected $config      = NULL;
     protected $dispatcher  = NULL;
@@ -59,6 +60,8 @@ final class Application {
 
     /**
      * 获取当前 \Yaf\Application 的环境名
+     *
+     * @link http://yaf.laruence.com/manual/yaf.class.application.environ.html
      *
      * @return string
      */

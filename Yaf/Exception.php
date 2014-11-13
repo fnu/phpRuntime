@@ -2,7 +2,11 @@
 
 namespace Yaf;
 
-class Exception extends Exception {
+/**
+ * @link http://www.php.net/manual/en/yaf-dispatcher.catchexception.php
+ */
+class Exception extends Exception
+{
 
     protected $file     = NULL;
     protected $line     = NULL;
