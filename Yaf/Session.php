@@ -2,7 +2,11 @@
 
 namespace Yaf;
 
-final class Session implements Iterator, Traversable, ArrayAccess, Countable {
+/**
+ * @link http://yaf.laruence.com/manual/yaf.class.session.html
+ */
+final class Session implements \Iterator, \Traversable, \ArrayAccess, \Countable
+{
 
     static protected $_instance = NULL;
     protected $_session         = NULL;
@@ -16,6 +20,23 @@ final class Session implements Iterator, Traversable, ArrayAccess, Countable {
 
     private function __wakeup();
 
+    public function __get($name);
+
+    /**
+     * @return boolean
+     */
+    public function __set($name, $value);
+
+    /**
+     * @return boolean
+     */
+    public function __isset($name);
+
+    /**
+     * @return boolean
+     */
+    public function __unset($name);
+
     /**
      * @return \Yaf\Session;
      */
@@ -25,18 +46,36 @@ final class Session implements Iterator, Traversable, ArrayAccess, Countable {
 
     public function get($name);
 
+    /**
+     * @return boolean
+     */
     public function has($name);
 
+    /**
+     * @param string $name  键名
+     * @param mixed  $value 键值
+     *
+     * @return boolean
+     */
     public function set($name, $value);
 
+    /**
+     * @return boolean
+     */
     public function del($name);
 
+    /**
+     * @return int
+     */
     public function count();
 
     public function rewind();
 
     public function next();
 
+    /**
+     * @return mixed
+     */
     public function current();
 
     public function key();
@@ -50,12 +89,4 @@ final class Session implements Iterator, Traversable, ArrayAccess, Countable {
     public function offsetExists($name);
 
     public function offsetUnset($name);
-
-    public function __get($name);
-
-    public function __isset($name);
-
-    public function __set($name, $value);
-
-    public function __unset($name);
 }
