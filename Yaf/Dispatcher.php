@@ -10,7 +10,8 @@ namespace Yaf;
  *
  * @link http://yaf.laruence.com/manual/yaf.class.dispatcher.html
  */
-final class Dispatcher {
+final class Dispatcher
+{
 
     protected $_router             = NULL;
     protected $_view               = NULL;
@@ -38,9 +39,15 @@ final class Dispatcher {
 
     public function initView($templates_dir, array $options = NULL);
 
-    public function setView($view);
+    public function setView(\Yaf\View_Interface $view);
 
-    public function setRequest($request);
+    /**
+     * 设置请求体
+     *
+     * @param  \Yaf\Request_Abstract $request
+     * @return \Yaf\Dispatcher
+     */
+    public function setRequest(\Yaf\Request_Abstract $request);
 
     public function getApplication();
 
