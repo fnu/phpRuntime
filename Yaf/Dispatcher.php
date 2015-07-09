@@ -51,6 +51,9 @@ final class Dispatcher
 
     public function getApplication();
 
+    /**
+     * @return \Yaf\Router
+     */
     public function getRouter();
 
     /**
