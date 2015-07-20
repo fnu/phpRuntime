@@ -91,7 +91,7 @@ class Redis
      *
      * @return boolean
      */
-    public function setex($key, $ttl, $val);
+    public function setEx($key, $ttl, $val);
 
     /**
      * 设置键的时候, 同时指定它的TTL
@@ -102,7 +102,7 @@ class Redis
      *
      * @return boolean
      */
-    public function pSetex($key, $ttl, $val);
+    public function pSetEx($key, $ttl, $val);
 
     /**
      * SETNX与SET的区别是:
