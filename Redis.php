@@ -30,7 +30,21 @@ class Redis
      */
     public function connect($host, $port = 6379, $timeout = 0);
 
-    public function pconnect();
+    /**
+     * 跟 connect() 类似
+     * 但相同的 "host + port + timeout", "host + persistent_id", "unix socket + timeout" 会复用连接.
+     * 对于 "host + port..." 相同, 但希望不同连接使用不同的DB的场景, 建议使用不同的$persistent_id
+     *
+     * @link https://github.com/phpredis/phpredis#pconnect-popen
+     *
+     * @param string $host can be a host, or the path to a unix domain socket
+     * @param int    $port optional
+     * @param float  $timeout  value in seconds (optional, default is 0 meaning unlimited)
+     * @param string $persistent_id identity for the requested persistent connection
+     * @param int    $retry_interval value in milliseconds (optional)
+     * @reutrn boolean
+     */
+    public function pconnect($host, $port, $timeout, $persistent_id, $retry_interval);
 
     public function close();
 
@@ -576,6 +590,9 @@ class Redis
 
     public function srem();
 
+    /**
+     * @link http://redisdoc.com/set/sismember.html
+     */
     public function sIsMember();
 
     public function zrevrange();
