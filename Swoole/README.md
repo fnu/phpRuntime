@@ -1,1 +1,1 @@
-from https://github.com/tchiotludo/swoole-ide-helper/tree/english/src
+from https://github.com/eaglewu/swoole-ide-helper
