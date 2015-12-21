@@ -2,7 +2,11 @@
 
 namespace Yaf;
 
-abstract class Request_Abstract {
+/**
+ * @link http://yaf.laruence.com/manual/yaf.class.request.html
+ */
+abstract class Request_Abstract
+{
 
     const SCHEME_HTTP  = "http";
     const SCHEME_HTTPS = "https";
