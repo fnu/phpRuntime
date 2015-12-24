@@ -1,16 +1,27 @@
 <?php
 
 /**
- * @link https://github.com/nicolasff/phpredis
+ * @link https://github.com/phpredis/phpredis
  */
 class Redis
 {
 
-    const REDIS_STRING    = 1;
-    const REDIS_SET       = 2;
-    const REDIS_LIST      = 3;
-    const REDIS_ZSET      = 4;
-    const REDIS_HASH      = 5;
+    /** Redis 键类型:字符串 */
+    const REDIS_STRING = 1;
+
+    /** Redis 键类型:集合 */
+    const REDIS_SET = 2;
+
+    /** Redis 键类型:列表 */
+    const REDIS_LIST = 3;
+
+    /** Redis 键类型:有序集合 */
+    const REDIS_ZSET = 4;
+
+    /** Redis 键类型:哈希表 */
+    const REDIS_HASH = 5;
+
+    /** Redis 键类型:未知 */
     const REDIS_NOT_FOUND = 0;
 
     public function __construct();
@@ -18,7 +29,7 @@ class Redis
     /**
      * Connects to a Redis instance.
      *
-     * @link  https://github.com/nicolasff/phpredis#connect-open
+     * @link  https://github.com/phpredis/phpredis#connect-open
      * @example $redis->connect('127.0.0.1', 6379);
      * @example $redis->connect('127.0.0.1'); // port 6379 by default
      * @example $redis->connect('127.0.0.1', 6379, 2.5); // 2.5 sec timeout.
@@ -260,7 +271,7 @@ class Redis
     public function lInsert();
 
     /**
-     * @link https://github.com/nicolasff/phpredis#sadd Github
+     * @link https://github.com/phpredis/phpredis#sadd Github
      *
      * @example $redis->sAdd($key, $value) 单个值
      * @example $redis->sAdd($key, $value1, $value2...$valueN) 多个值
@@ -332,9 +343,17 @@ class Redis
     /**
      * 返回 Redis 当前的状态.
      * 包括版本号,CPU占用, 内存占用等等...
-     * @return array
+     *
+     * @example $redis->info(); // standard redis INFO command
+     * @example $redis->info("COMMANDSTATS"); // Information on the commands that have been run (>=2.6 only)
+     * @example $redis->info("CPU"); // just CPU information from Redis INFO
+     *
+     * @link https://github.com/phpredis/phpredis#info
+     * @link http://redis.io/commands/info
+     *
+     * @return array|mixed
      */
-    public function info();
+    public function info($group = 'all');
 
     /**
      * 选择,切换到另一个数据库
@@ -474,7 +493,7 @@ class Redis
      * @param string $key Redis键名
      * @param array $val 带索引的数组
      *
-     * @link https://github.com/nicolasff/phpredis#hmset
+     * @link https://github.com/phpredis/phpredis#hmset
      */
     public function hMset($key, $val = array('name' => 'Joe', 'salary' => 2000));
 
