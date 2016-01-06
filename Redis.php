@@ -612,12 +612,12 @@ class Redis
     /**
      * 判断 member 元素是否集合 key 的成员
      *
-     * 如果 member 元素是集合的成员, 返回 1
-     * 如果 member 元素不是集合的成员, 或 key 不存在, 返回 0
+     * 如果 member 元素是集合的成员, 返回 true
+     * 如果 member 元素不是集合的成员, 或 key 不存在, 返回 false
      *
      * @link http://redisdoc.com/set/sismember.html
      * @link https://github.com/phpredis/phpredis#sismember-scontains
-     * @return int
+     * @return boolean
      */
     public function sIsMember($key, $member);
 
