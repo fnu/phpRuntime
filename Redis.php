@@ -110,6 +110,8 @@ class Redis
     /**
      * 设置键的时候, 同时指定它的TTL
      *
+     * @link https://github.com/phpredis/phpredis#setex-psetex
+     *
      * @param string $key 键名
      * @param int    $ttl 生存时间(秒)
      * @param string $val 值
