@@ -89,8 +89,8 @@ class Redis
      * 给一个键设置字符串值
      * SET keyname datalength data
      * (SET bruce 10 paitoubing:保存key为burce,
-     * 字符串长度为10的一个字符串paitoubing到数据库)，
-     * data最大不可超过1G。
+     * 字符串长度为10的一个字符串paitoubing到数据库),
+     * data最大不可超过1G.
      *
      * @param string $key
      * @param string $val
@@ -133,8 +133,8 @@ class Redis
 
     /**
      * SETNX与SET的区别是:
-     * SET可以创建与更新key的value，
-     * 而SETNX是如果key不存在，则创建key与value数据
+     * SET可以创建与更新key的value,
+     * 而SETNX是如果key不存在, 则创建key与value数据
      *
      * @param string $key
      * @param string $val
@@ -293,11 +293,40 @@ class Redis
 
     public function sPop();
 
-    public function sRandMember();
+    /**
+     * 如果命令执行时, 只提供了 key 参数, 那么返回集合中的一个随机元素.
+     *
+     * 如果 count 为正数, 且小于集合基数,
+     * 那么命令返回一个包含 count 个元素的数组, 数组中的元素各不相同.
+     *
+     * 如果 count 大于等于集合基数, 那么返回整个集合
+     *
+     * 如果 count 为负数, 那么命令返回一个数组,
+     * 数组中的元素可能会重复出现多次, 而数组的长度为 count 的绝对值.
+     *
+     * 该操作和 sPop 相似, 但 sPop 将随机元素从集合中移除并返回,
+     * 而 sRandMember 则仅仅返回随机元素, 而不对集合进行任何改动.
+     *
+     * @link http://redisdoc.com/set/srandmember.html
+     * @link https://github.com/phpredis/phpredis#srandmember
+     * @param string $key   集合的键值
+     * @param int    $count 返回成员数, 默认为1
+     * @return array
+     */
+    public function sRandMember($key, $count = 1);
 
     public function sContains();
 
-    public function sMembers();
+    /**
+     * 返回集合 key 中的所有成员
+     * 不存在的 key 被视为空集合
+     *
+     * @link http://redisdoc.com/set/smembers.html
+     * @link https://github.com/phpredis/phpredis#smembers-sgetmembers
+     * @param string $key 集合的键值
+     * @return array
+     */
+    public function sMembers($key);
 
     public function sInter();
 
@@ -385,16 +414,16 @@ class Redis
     public function zReverseRange();
 
     /**
-     * 返回有序集 key 中，所有 score 值介于 min 和 max 之间(包括等于 min 或 max )的成员。
-     * 有序集成员按 score 值递增(从小到大)次序排列。
-     * 具有相同 score 值的成员按字典序(lexicographical order)来排列(该属性是有序集提供的，不需要额外的计算)。
-     * 可选的 LIMIT 参数指定返回结果的数量及区间(就像SQL中的 SELECT LIMIT offset, count )，
-     * 注意当 offset 很大时，定位 offset 的操作可能需要遍历整个有序集，此过程最坏复杂度为 O(N) 时间。
-     * 可选的 WITHSCORES 参数决定结果集是单单返回有序集的成员，还是将有序集成员及其 score 值一起返回。
-     * 该选项自 Redis 2.0 版本起可用。
+     * 返回有序集 key 中, 所有 score 值介于 min 和 max 之间(包括等于 min 或 max )的成员.
+     * 有序集成员按 score 值递增(从小到大)次序排列.
+     * 具有相同 score 值的成员按字典序(lexicographical order)来排列(该属性是有序集提供的, 不需要额外的计算).
+     * 可选的 LIMIT 参数指定返回结果的数量及区间(就像SQL中的 SELECT LIMIT offset, count ),
+     * 注意当 offset 很大时, 定位 offset 的操作可能需要遍历整个有序集, 此过程最坏复杂度为 O(N) 时间.
+     * 可选的 WITHSCORES 参数决定结果集是单单返回有序集的成员, 还是将有序集成员及其 score 值一起返回.
+     * 该选项自 Redis 2.0 版本起可用.
      * 区间及无限
-     * min 和 max 可以是 -inf 和 +inf ，这样一来，你就可以在不知道有序集的最低和最高 score 值的情况下，使用 ZRANGEBYSCORE 这类命令。
-     * 默认情况下，区间的取值使用闭区间 (小于等于或大于等于)，你也可以通过给参数前增加 ( 符号来使用可选的开区间 (小于或大于)。
+     * min 和 max 可以是 -inf 和 +inf , 这样一来, 你就可以在不知道有序集的最低和最高 score 值的情况下, 使用 ZRANGEBYSCORE 这类命令.
+     * 默认情况下, 区间的取值使用闭区间 (小于等于或大于等于), 你也可以通过给参数前增加 ( 符号来使用可选的开区间 (小于或大于).
      *
      * @param string    $key        键名
      * @param int       $start      Score开始
@@ -406,7 +435,7 @@ class Redis
     /**
      * 类似于 zRangeByScore 方法.
      * 但是:
-     * 有序集成员按 score 值递减(从大到小)的次序排列。
+     * 有序集成员按 score 值递减(从大到小)的次序排列.
      *
      * @param string    $key        键名
      * @param int       $start      Score开始
@@ -416,8 +445,8 @@ class Redis
     public function zRevRangeByScore($key, $start, $end, $options);
 
     /**
-     * 返回有序集 key 中，
-     * score 值在 $start 和 $end 之间(默认包括 score 值等于 min 或 max )的成员的数量。
+     * 返回有序集 key 中,
+     * score 值在 $start 和 $end 之间(默认包括 score 值等于 min 或 max )的成员的数量.
      *
      * @param string $key 键名
      * @param string $start score的开始
@@ -557,8 +586,8 @@ class Redis
     public function zRemove();
 
     /**
-     * 移除有序集 key 中的一个或多个成员，不存在的成员将被忽略。
-     * 当 key 存在但不是有序集类型时，返回一个错误。
+     * 移除有序集 key 中的一个或多个成员, 不存在的成员将被忽略.
+     * 当 key 存在但不是有序集类型时, 返回一个错误.
      *
      * @param string $key 键名
      * @param string $member 成员名
