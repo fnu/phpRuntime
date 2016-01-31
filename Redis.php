@@ -405,7 +405,23 @@ class Redis
 
     public function rpoplpush();
 
-    public function zAdd();
+    /**
+     * 将一个 member 元素及其 score 值加入到有序集 key 当中
+     *
+     * 如果某个 member 已经是有序集的成员
+     * 那么更新这个 member 的 score 值,
+     * 并通过重新插入这个 member 元素, 来保证该 member 在正确的位置上
+     *
+     * @link http://redisdoc.com/sorted_set/zadd.html
+     * @link https://github.com/phpredis/phpredis/#zadd
+     *
+     * @param string $key    键名
+     * @param float  $value  排序值, 可以是整数值或双精度浮点数
+     * @param string $member 成员名
+     *
+     * @return int 被成功添加的新成员的数量, 不包括那些被更新的, 或已经存在的成员
+     */
+    public function zAdd($key, $value, $member);
 
     public function zDelete();
 
