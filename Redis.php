@@ -481,7 +481,10 @@ class Redis
      * @example $redis->zIncrBy('key', 2.5, 'member1');
      * @example $redis->zIncrBy('key', 1, 'member1');
      *
-     * @link http://www.redisdoc.com/en/latest/sorted_set/zincrby.html
+     * @link http://redisdoc.com/sorted_set/zincrby.html
+     * @param string $key    键名
+     * @param int    $value  增量
+     * @param string $member 成员名
      */
     public function zIncrBy($key, $value, $member);
 
