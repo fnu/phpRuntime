@@ -287,9 +287,29 @@ class Redis
 
     public function sSize();
 
-    public function sRemove();
+    /**
+     * 移除集合 key 中的一个或多个 member 元素
+     * 不存在的 member 元素会被忽略
+     *
+     * 在 Redis 2.4 版本以前, sRem 只接受单个 member 值
+     *
+     * @link https://github.com/phpredis/phpredis#srem-sremove
+     * @link http://redis.io/commands/srem
+     * @link http://redisdoc.com/set/srem.html
+     */
+    public function sRem($key, $member);
 
-    public function sMove();
+    /**
+     * 将 member 元素从 source 集合移动到 destination 集合
+     * 这是原子性操作
+     *
+     * @link http://redisdoc.com/set/smove.html
+     * @link https://github.com/phpredis/phpredis#smove
+     * @link http://redis.io/commands/smove
+     *
+     * @return boolean
+     */
+    public function sMove($source, $destination, $member);
 
     public function sPop();
 
