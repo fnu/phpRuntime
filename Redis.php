@@ -254,8 +254,17 @@ class Redis
 
     public function rPop();
 
+    /**
+     * 是列表的阻塞式(blocking)弹出原语
+     * @link https://github.com/phpredis/phpredis#blpop-brpop
+     * @link http://redisdoc.com/list/blpop.html
+     */
     public function blPop();
 
+    /**
+     * @link https://github.com/phpredis/phpredis#blpop-brpop
+     * @link http://redisdoc.com/list/brpop.html
+     */
     public function brPop();
 
     public function lSize();
